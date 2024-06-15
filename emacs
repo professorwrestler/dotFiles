@@ -36,3 +36,6 @@
 (require 'smartparens-config)
 ;; Always start smartparens mode in js-mode.
 (add-hook 'js-mode-hook #'smartparens-mode)
+
+;;show line numbers
+(global-display-line-numbers-mode 1)
