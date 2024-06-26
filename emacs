@@ -3,11 +3,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(zenburn))
+ '(custom-enabled-themes '(plan9))
  '(custom-safe-themes
-   '("9fb561389e5ac5b9ead13a24fb4c2a3544910f67f12cfcfe77b75f36248017d0" "a1c18db2838b593fba371cb2623abd8f7644a7811ac53c6530eebdf8b9a25a8d" "2d035eb93f92384d11f18ed00930e5cc9964281915689fa035719cab71766a15" default))
+   '("3770d0ae70172461ee0a02edcff71b7d480dc54066e8960d8de9367d12171efb" "9fb561389e5ac5b9ead13a24fb4c2a3544910f67f12cfcfe77b75f36248017d0" "a1c18db2838b593fba371cb2623abd8f7644a7811ac53c6530eebdf8b9a25a8d" "2d035eb93f92384d11f18ed00930e5cc9964281915689fa035719cab71766a15" default))
  '(package-selected-packages
-   '(prettier elune-theme dream-theme melancholy-theme cyberpunk-theme birds-of-paradise-plus-theme commentary-theme constant-theme company nordless-theme nordic-night-theme nord-theme js2-mode smartparens dummyparens jazz-theme autumn-light-theme rimero-theme poet-theme grayscale-theme greymatters-theme grey-paper-theme timu-spacegrey-theme zenburn-theme tok-theme exec-path-from-shell anti-zenburn-theme ample-theme ##)))
+   '(go-imports go-mode plan9-theme forest-blue-theme prettier elune-theme dream-theme melancholy-theme cyberpunk-theme birds-of-paradise-plus-theme commentary-theme constant-theme company nordless-theme nordic-night-theme nord-theme js2-mode smartparens dummyparens jazz-theme autumn-light-theme rimero-theme poet-theme grayscale-theme greymatters-theme grey-paper-theme timu-spacegrey-theme zenburn-theme tok-theme exec-path-from-shell anti-zenburn-theme ample-theme ##)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -52,3 +52,4 @@
 (setenv "NODE_PATH" "/usr/local/lib/node_modules")
 ;;use prettier to auto-format code
 (add-hook 'after-init-hook #'global-prettier-mode)
+
