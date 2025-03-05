@@ -3,11 +3,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(plan9))
+ '(custom-enabled-themes '(gruvbox))
  '(custom-safe-themes
-   '("3770d0ae70172461ee0a02edcff71b7d480dc54066e8960d8de9367d12171efb" "9fb561389e5ac5b9ead13a24fb4c2a3544910f67f12cfcfe77b75f36248017d0" "a1c18db2838b593fba371cb2623abd8f7644a7811ac53c6530eebdf8b9a25a8d" "2d035eb93f92384d11f18ed00930e5cc9964281915689fa035719cab71766a15" default))
+   '("5a0ddbd75929d24f5ef34944d78789c6c3421aa943c15218bac791c199fc897d"
+     "d5fd482fcb0fe42e849caba275a01d4925e422963d1cd165565b31d3f4189c87"))
  '(package-selected-packages
-   '(go-imports go-mode plan9-theme forest-blue-theme prettier elune-theme dream-theme melancholy-theme cyberpunk-theme birds-of-paradise-plus-theme commentary-theme constant-theme company nordless-theme nordic-night-theme nord-theme js2-mode smartparens dummyparens jazz-theme autumn-light-theme rimero-theme poet-theme grayscale-theme greymatters-theme grey-paper-theme timu-spacegrey-theme zenburn-theme tok-theme exec-path-from-shell anti-zenburn-theme ample-theme ##)))
+   '(## acme-theme dashboard exec-path-from-shell geiser-guile
+	gruvbox-theme paredit plan9-theme python-mode smartparens)))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -15,17 +18,22 @@
  ;; If there is more than one, they won't work right.
  )
 
-;;non automated stuff:
+;;start dashboard
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+;;set splash image
+(setq dashboard-startup-banner "~/.emacs.d/logos/kawaii-sm.png")
+;;center content
+(setq dashboard-center-content t)
 
 ;;MELPA setup for installing packages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-;;adds python autocomplete
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
+
 ;;lets me to properly use zshell in an emacs window 
 (require 'exec-path-from-shell) ;; if not using the ELPA package
 (exec-path-from-shell-initialize)
+
 ;;move backup files to trash
 (setq backup-directory-alist            '((".*" . "~/.Trash")))
 
@@ -34,15 +42,9 @@
 
 ;;add smartparens
 (require 'smartparens-config)
-;; Always start smartparens mode in js-mode.
-(add-hook 'js-mode-hook #'smartparens-mode)
 
 ;;show line numbers
-;;(global-display-line-numbers-mode 1)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
-
-;;set js indent level to two spaces
-(setq js-indent-level 2)
 
 ;;allow autocomplete at startup
 (require 'auto-complete)
@@ -53,3 +55,13 @@
 ;;use prettier to auto-format code
 (add-hook 'after-init-hook #'global-prettier-mode)
 
+;;add slime for sbcl
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+;; Replace "sbcl" with the path to your implementation
+(setq inferior-lisp-program "sbcl")
+;;add paredit for lisp to close parentheses
+(add-hook 'lisp-mode-hook 'enable-paredit-mode) 
+;;and for scheme
+(add-hook 'scheme-mode-hook 'enable-paredit-mode)
+;;automatically closes parens for non-lisp languages
+(electric-pair-mode)
