@@ -8,7 +8,7 @@
    '("5a0ddbd75929d24f5ef34944d78789c6c3421aa943c15218bac791c199fc897d"
      "d5fd482fcb0fe42e849caba275a01d4925e422963d1cd165565b31d3f4189c87"))
  '(package-selected-packages
-   '(## acme-theme dashboard exec-path-from-shell geiser-guile
+   '(## acme-theme cider dashboard exec-path-from-shell geiser-guile
 	gruvbox-theme paredit plan9-theme python-mode smartparens)))
 
 (custom-set-faces
@@ -16,7 +16,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Fira Mono for Powerline" :foundry "nil" :slant normal :weight regular :height 140 :width normal)))))
 
 ;;start dashboard
 (require 'dashboard)
@@ -57,11 +57,18 @@
 
 ;;add slime for sbcl
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
+
 ;; Replace "sbcl" with the path to your implementation
 (setq inferior-lisp-program "sbcl")
+
 ;;add paredit for lisp to close parentheses
-(add-hook 'lisp-mode-hook 'enable-paredit-mode) 
-;;and for scheme
+(add-hook 'lisp-mode-hook 'enable-paredit-mode)
+
+;;and for guile/scheme
 (add-hook 'scheme-mode-hook 'enable-paredit-mode)
+
 ;;automatically closes parens for non-lisp languages
 (electric-pair-mode)
+
+;;syntax highlighting for elisp
+;;(add-hook 'elisp-mode-hook 'font-lock-mode)
