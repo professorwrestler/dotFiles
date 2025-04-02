@@ -9,7 +9,8 @@
      "d5fd482fcb0fe42e849caba275a01d4925e422963d1cd165565b31d3f4189c87"))
  '(package-selected-packages
    '(## acme-theme cider dashboard exec-path-from-shell geiser-guile
-	gruvbox-theme paredit plan9-theme python-mode smartparens)))
+	gruvbox-theme lua-mode paredit plan9-theme python-mode
+	smartparens)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -62,10 +63,10 @@
 (setq inferior-lisp-program "sbcl")
 
 ;;add paredit for lisp to close parentheses
-(add-hook 'lisp-mode-hook 'enable-paredit-mode)
+;;(add-hook 'lisp-mode-hook 'enable-paredit-mode)
 
 ;;and for guile/scheme
-(add-hook 'scheme-mode-hook 'enable-paredit-mode)
+;;(add-hook 'scheme-mode-hook 'enable-paredit-mode)
 
 ;;automatically closes parens for non-lisp languages
 (electric-pair-mode)
