@@ -9,8 +9,8 @@
      "d5fd482fcb0fe42e849caba275a01d4925e422963d1cd165565b31d3f4189c87"))
  '(package-selected-packages
    '(## acme-theme cider dashboard exec-path-from-shell geiser-guile
-	gruvbox-theme lua-mode paredit plan9-theme python-mode
-	smartparens)))
+	gruvbox-theme kanagawa-themes lua-mode paredit plan9-theme
+	python-mode smartparens)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -73,3 +73,12 @@
 
 ;;syntax highlighting for elisp
 ;;(add-hook 'elisp-mode-hook 'font-lock-mode)
+
+;; allows evaluation of wcurrent buffer in ielm/elisp repl
+(defun mp-elisp-mode-eval-buffer ()
+  (interactive)
+  (message "Evaluated buffer")
+  (eval-buffer))
+
+(define-key emacs-lisp-mode-map (kbd "C-c C-c") #'mp-elisp-mode-eval-buffer)
+(define-key lisp-interaction-mode-map (kbd "C-c C-c") #'mp-elisp-mode-eval-buffer)
