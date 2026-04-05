@@ -8,9 +8,9 @@
    '("5a0ddbd75929d24f5ef34944d78789c6c3421aa943c15218bac791c199fc897d"
      "d5fd482fcb0fe42e849caba275a01d4925e422963d1cd165565b31d3f4189c87"))
  '(package-selected-packages
-   '(## acme-theme cider dashboard exec-path-from-shell geiser-guile
-	gruvbox-theme kanagawa-themes lua-mode paredit plan9-theme
-	python-mode smartparens)))
+   '(## acme-theme dashboard exec-path-from-shell geiser-chicken
+	gruvbox-theme kanagawa-themes lua-mode moe-theme paredit
+	php-mode plan9-theme python-mode smartparens)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -31,12 +31,12 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
-;;lets me to properly use zshell in an emacs window 
+;;lets me properly use zshell in an emacs window 
 (require 'exec-path-from-shell) ;; if not using the ELPA package
 (exec-path-from-shell-initialize)
 
 ;;move backup files to trash
-(setq backup-directory-alist            '((".*" . "~/.Trash")))
+(setq backup-directory-alist '((".*" . "~/.Trash")))
 
 ;;make font bigger (14 px)
 (set-face-attribute 'default nil :height 140)
@@ -53,6 +53,7 @@
 
 ;;allow access to node libraries
 (setenv "NODE_PATH" "/usr/local/lib/node_modules")
+
 ;;use prettier to auto-format code
 (add-hook 'after-init-hook #'global-prettier-mode)
 
@@ -62,23 +63,22 @@
 ;; Replace "sbcl" with the path to your implementation
 (setq inferior-lisp-program "sbcl")
 
-;;add paredit for lisp to close parentheses
-;;(add-hook 'lisp-mode-hook 'enable-paredit-mode)
-
-;;and for guile/scheme
-;;(add-hook 'scheme-mode-hook 'enable-paredit-mode)
-
 ;;automatically closes parens for non-lisp languages
 (electric-pair-mode)
 
-;;syntax highlighting for elisp
-;;(add-hook 'elisp-mode-hook 'font-lock-mode)
+;;use delsel to delete selected text when typing
+(use-package delsel
+  :ensure nil ; no need to install it as it is built-in
+  :hook (after-init . delete-selection-mode))
 
-;; allows evaluation of wcurrent buffer in ielm/elisp repl
+;; allows evaluation of current buffer in ielm/elisp repl
 (defun mp-elisp-mode-eval-buffer ()
   (interactive)
   (message "Evaluated buffer")
   (eval-buffer))
-
+;; define key bindings for C-c C-c buffer evaluation
 (define-key emacs-lisp-mode-map (kbd "C-c C-c") #'mp-elisp-mode-eval-buffer)
 (define-key lisp-interaction-mode-map (kbd "C-c C-c") #'mp-elisp-mode-eval-buffer)
+
+(setq geiser-scheme-implementation 'chicken)
+
